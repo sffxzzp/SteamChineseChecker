@@ -1,0 +1,20 @@
+language: python
+python:
+  - "3.4"
+
+env:
+  global:
+    - NOWTIME="$(date -u '+%y/%m/%d %H:%M:%S %Z')"
+
+before_script:
+  - pip install requests BeautifulSoup4
+
+script:
+  - python cn.py
+
+after_script:
+  - git config --local user.name "$user_name"
+  - git config --local user.email "$user_email"
+  - git checkout master
+  - git commit -am "data build at $NOWTIME"
+  - git push --force "https://$gh_token@github.com/sffxzzp/SteamChineseChecker.git" master:master
