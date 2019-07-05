@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 def main():
 	oricount = len(json.loads(open('data.json', 'r', encoding='utf-8').read()))
 	maxcount = json.loads(requests.get('https://store.steampowered.com/curator/31318556/ajaxgetfilteredrecommendations/render/?query=&start=0&count=0&tagids=&sort=recent&app_types=&curations=&reset=false').text)['total_count']
+	print('Old data: %s\tNew Data: %s' % (oricount, maxcount))
 	if maxcount > oricount:
 		cont = json.loads(requests.get('https://store.steampowered.com/curator/31318556/ajaxgetfilteredrecommendations/render/?query=&start=0&count=%s&tagids=&sort=recent&app_types=&curations=&reset=false' % maxcount).text)['results_html']
 		soup = BeautifulSoup(cont, 'html.parser')
