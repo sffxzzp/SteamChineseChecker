@@ -13,7 +13,7 @@ def main():
 		out = {}
 		for game in soup.select('div.recommendation'):
 			appid = game.select_one('a.store_capsule').get('data-ds-appid')
-			desc = game.select_one('div.recommendation_desc').text.replace('"', '').strip()
+			desc = game.select_one('div.recommendation_desc').text.replace('"', '').replace('steamcn.com', 'keylol.com').strip()
 			link = game.select_one('div.recommendation_readmore > a[target=_blank]')
 			if link == None:
 				link = ''
