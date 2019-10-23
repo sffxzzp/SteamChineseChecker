@@ -19,6 +19,8 @@ def main():
 				link = ''
 			else:
 				link = link.get('href').replace('https://steamcommunity.com/linkfilter/?url=', '')
+				if 'steamcn.com' in link:
+					link = link.replace('steamcn.com', 'keylol.com')
 			out[appid] = {'description': desc, 'link': link}
 		outstr = json.dumps(out, ensure_ascii=False)
 		open('data.json', 'w', encoding='utf-8').write(outstr)
