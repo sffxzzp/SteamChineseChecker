@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         Steam Chinese Checker
 // @namespace    https://github.com/sffxzzp
-// @version      0.01
+// @version      0.02
 // @description  Show Chinese patch info if the game has 3rd-party Chinese translations.
 // @author       sffxzzp
 // @match        *://store.steampowered.com/app/*
 // @icon         https://store.steampowered.com/favicon.ico
-// @resource data https://raw.githubusercontent.com/sffxzzp/SteamChineseChecker/master/data.json
-// @updateURL    https://raw.githubusercontent.com/sffxzzp/SteamChineseChecker/master/steamchinesechecker.user.js
+// @resource data https://cdn.jsdelivr.net/gh/sffxzzp/SteamChineseChecker/data.json
+// @updateURL    https://cdn.jsdelivr.net/gh/sffxzzp/SteamChineseChecker/steamchinesechecker.user.js
 // @grant        GM_getResourceText
 // ==/UserScript==
 
@@ -18,23 +18,15 @@
             var node;
             if (data.node) {
                 node = document.createElement(data.node);
-                if (data.content) {
-                    this.setElement({node: node, content: data.content});
-                }
-                if (data.html) {
-                    node.innerHTML = data.html;
-                }
+                if (data.content) {this.setElement({node: node, content: data.content});}
+                if (data.html) {node.innerHTML = data.html;}
             }
             return node;
         };
         util.setElement = function (data) {
             if (data.node) {
-                for (let name in data.content) {
-                    data.node.setAttribute(name, data.content[name]);
-                }
-                if (data.html!=undefined) {
-                    data.node.innerHTML = data.html;
-                }
+                for (let name in data.content) {data.node.setAttribute(name, data.content[name]);}
+                if (data.html!=undefined) {data.node.innerHTML = data.html;}
             }
         };
         return util;
