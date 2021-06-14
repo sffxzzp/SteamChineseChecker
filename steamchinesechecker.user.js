@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Steam Chinese Checker
 // @namespace    https://github.com/sffxzzp
-// @version      0.02
+// @version      0.03
 // @description  Show Chinese patch info if the game has 3rd-party Chinese translations.
 // @author       sffxzzp
 // @match        *://store.steampowered.com/app/*
@@ -35,7 +35,7 @@
         function steamcc() {};
         steamcc.prototype.insert = function (data) {
             var rightcol = document.querySelector('div.game_meta_data');
-            var langpanel = document.querySelector('table.game_language_options').parentNode.parentNode;
+            var langpanel = document.querySelector('table.game_language_options').parentNode;
             var newpanel = util.createElement({
                 node: 'div',
                 html: '<div class="block responsive_apppage_details_right"><div class="block_title">汉化信息：</div><p><b>'+data.description+'</b></p><p><a target="_blank" style="float: right;" href="'+data.link+'">查看更多</a></p><br /></div>'
