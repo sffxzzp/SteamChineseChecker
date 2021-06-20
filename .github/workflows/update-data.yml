@@ -1,0 +1,37 @@
+name: Update data.json
+
+on:
+  push:
+    branches: [ master ]
+  schedule:
+    - cron:  '15 8 */7 * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests BeautifulSoup4
+    - name: Fetching data
+      run: |
+        python cn.py
+    - name: Git Commit
+      env:
+        GitEmail: ${{ secrets.GitEmail }}
+        GitName: ${{ secrets.GitName }}
+      run: |
+        git add -A .
+        git config --local user.email "$GitEmail"
+        git config --local user.name "$GitName"
+        git commit -am "Updated: `date +'%Y-%m-%d %H:%M:%S'`"
+    - name: Git Push
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
