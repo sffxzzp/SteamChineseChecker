@@ -28,7 +28,7 @@ jobs:
         git add -A .
         git config --local user.email "$GitEmail"
         git config --local user.name "$GitName"
-        git commit -am "Updated: `date +'%Y-%m-%d %H:%M:%S'`"
+        git commit -am "Updated: `date +'%Y-%m-%d %H:%M:%S'` UTC"
     - name: Git Push
       uses: ad-m/github-push-action@master
       with:
