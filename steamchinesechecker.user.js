@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Steam Chinese Checker
 // @namespace    https://github.com/sffxzzp
-// @version      0.06
+// @version      0.07
 // @description  Show Chinese patch info if the game has 3rd-party Chinese translations.
 // @author       sffxzzp
 // @match        *://store.steampowered.com/app/*
@@ -47,7 +47,8 @@
             var appid = parseInt(/\d+/.exec(location.href)[0]);
             var data = JSON.parse(GM_getResourceText('data'));
             if (data[appid] === undefined) {
-                this.insert({description: '目前还没有汉化哦~', link: 'https://keylol.com'});
+                var appName = document.querySelector('#appHubAppName').innerText;
+                this.insert({description: '目前还没有汉化哦~<br>或者点下面的「查看更多」碰碰运气？', link: 'https://cn.bing.com/search?q='+appName+'+汉化'});
             } else {
                 this.insert(data[appid]);
             }
