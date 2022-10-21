@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         Steam Chinese Checker
 // @namespace    https://github.com/sffxzzp
-// @version      0.08
+// @version      0.09
 // @description  Show Chinese patch info if the game has 3rd-party Chinese translations.
 // @author       sffxzzp
 // @match        *://store.steampowered.com/app/*
 // @icon         https://store.steampowered.com/favicon.ico
-// @resource     data https://github.com/sffxzzp/SteamChineseChecker/raw/master/data.json
+// @resource     data https://ghproxy.com/https://raw.githubusercontent.com/sffxzzp/SteamChineseChecker/master/data.json
 // @downloadURL  https://github.com/sffxzzp/SteamChineseChecker/raw/master/steamchinesechecker.user.js
 // @updateURL    https://github.com/sffxzzp/SteamChineseChecker/raw/master/steamchinesechecker.user.js
 // @grant        GM_getResourceText
