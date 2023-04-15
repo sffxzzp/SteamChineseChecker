@@ -1,6 +1,6 @@
 #!/bin/python3
 # -*- coding: UTF-8 -*-
-import json, urllib, requests, math
+import json, urllib, requests, math, time
 from bs4 import BeautifulSoup
 
 def main():
@@ -24,6 +24,7 @@ def main():
 			out[appid] = {'description': desc, 'link': link}
 	outstr = json.dumps(out, ensure_ascii=False)
 	open('data.json', 'w', encoding='utf-8').write(outstr)
+	open('update.txt', 'w', encoding='utf-8').write(int(time.time()))
 
 if __name__ == '__main__':
 	main()
