@@ -24,7 +24,7 @@ def main():
 			out[appid] = {'description': desc, 'link': link}
 	outstr = json.dumps(out, ensure_ascii=False)
 	open('data.json', 'w', encoding='utf-8').write(outstr)
-	open('update.txt', 'w', encoding='utf-8').write(int(time.time()))
+	open('update.txt', 'w', encoding='utf-8').write(str(int(time.time())))
 
 if __name__ == '__main__':
 	main()
