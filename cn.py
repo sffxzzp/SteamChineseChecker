@@ -1,6 +1,6 @@
 #!/bin/python3
 # -*- coding: UTF-8 -*-
-import json, urllib, requests, math, time, copy
+import json, urllib, requests, math, time
 from bs4 import BeautifulSoup
 
 def main():
