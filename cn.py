@@ -1,6 +1,6 @@
 #!/bin/python3
 # -*- coding: UTF-8 -*-
-import json, urllib, requests, math, time
+import json, urllib, requests, math, time, copy
 from bs4 import BeautifulSoup
 
 def main():
@@ -18,12 +18,29 @@ def main():
 			if link == None:
 				link = ''
 			else:
-				link = link.get('href').replace('https://steamcommunity.com/linkfilter/?url=', '')
+				link = urllib.parse.unquote(link.get('href').replace('https://steamcommunity.com/linkfilter/?url=', '').replace('https://steamcommunity.com/linkfilter/?u=', ''))
 				if 'steamcn.com' in link:
 					link = link.replace('steamcn.com', 'keylol.com')
 			out[appid] = {'description': desc, 'link': link}
 	outstr = json.dumps(out, ensure_ascii=False)
 	open('data.json', 'w', encoding='utf-8').write(outstr)
+
+	applistdata = json.loads(requests.get('https://api.steampowered.com/ISteamApps/GetAppList/v0002/').text)['applist']['apps']
+	applist = {}
+	for item in applistdata:
+		applist[str(item['appid'])] = item['name']
+	outhtml = "<html><body>"
+	for appid in out:
+		if appid not in applist:
+			continue
+		linkhtml = ""
+		if out[appid]['link'] != "":
+			linkhtml = "<a href='"+out[appid]['link']+"' target='blank'>汉化链接</a><br>"
+		outhtml += "<a href='https://store.steampowered.com/app/" + appid + "/' target='_blank'>" + applist[appid] + "</a><br>"+out[appid]['description']+"<br>"+linkhtml+"<br>"
+		out[appid]['name'] = applist[appid]
+	outhtml += "</body></html>"
+	open('output.html', 'w', encoding='utf-8').write(outhtml)
+
 	open('update.txt', 'w', encoding='utf-8').write(str(int(time.time())))
 
 if __name__ == '__main__':
