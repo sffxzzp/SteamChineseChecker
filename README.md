@@ -4,6 +4,8 @@
 
 这是一个能在 Steam 商店页面显示游戏是否存在第三方汉化补丁的脚本。
 
+也可以直接在[这个简陋的页面](https://htmlpreview.github.io/?https://github.com/sffxzzp/SteamChineseChecker/blob/master/output.html)查看内容。
+
 数据来源是 Steam 鉴赏家：[华语汉化](https://store.steampowered.com/curator/31318556/)。
 
 `data.json` 文件现在由 Github Actions 自动构建，每周拉取更新。
